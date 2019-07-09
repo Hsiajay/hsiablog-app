@@ -9,14 +9,15 @@ const service = axios.create({
 })
 
 //request拦截器
-service.interceptors.request.use(config => {
+service.interceptors.request.use(
+  config => {
 
   if (store.state.token) {
     config.headers['Oauth-Token'] = getToken()
   }
   return config
-}, error => {
-
+  },
+    error => {
   Promise.reject(error)
 })
 
@@ -64,7 +65,7 @@ service.interceptors.response.use(
       }
 
       return Promise.reject(res.msg);
-    } else {
+    }else {
       return response.data;
     }
   },
@@ -75,6 +76,6 @@ service.interceptors.response.use(
       message: '连接超时'
     })
     return Promise.reject('error')
-  })
+})
 
 export default service
