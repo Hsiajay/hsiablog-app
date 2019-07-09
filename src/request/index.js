@@ -25,7 +25,7 @@ service.interceptors.response.use(
   response => {
 
     //全局统一处理 Session超时
-    if (response.headers['session_time_out'] == 'timeout') {
+    if (response.headers['session_time_out'] === 'timeout') {
       store.dispatch('fedLogOut')
     }
 
